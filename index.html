@@ -1,8 +1,18 @@
-still updating by the way <!DOCTYPE html>
+<!--                  .:       .::   .::        .:       .::::::: .::      .:       
+                     .: ::     .::  .::        .: ::            .::       .: ::     
+                    .:  .::    .:: .::        .:  .::          .::       .:  .::    
+                   .::   .::   .: .:         .::   .::       .::        .::   .::   
+                  .:::::: .::  .::  .::     .:::::: .::     .::        .:::::: .::  
+                 .::       .:: .::   .::   .::       .::  .::         .::       .:: 
+                .::         .::.::     .::.::         .::.:::::::::::.::         .::
+                                                             https://linktr.ee/4.3h9
+ -->
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Falling In Love | Nikki & Arch</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -10,417 +20,668 @@ still updating by the way <!DOCTYPE html>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Playfair+Display:ital,wght@1,400;1,700;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
         
         :root {
             --primary: #f43f5e;
-            --accent: #a855f7;
-            --bg: #050505;
+            --bg: #020202;
+        }
+
+        
+        *, *::before, *::after {
+            -webkit-user-select: none; 
+            -moz-user-select: none; 
+            -ms-user-select: none; 
+            user-select: none; 
+            -webkit-user-drag: none; 
+            -webkit-touch-callout: none; 
+            cursor: none !important; 
+        }
+
+        
+        textarea, input {
+            -webkit-user-select: text !important;
+            user-select: text !important;
         }
 
         body {
             background-color: var(--bg);
             font-family: 'Inter', sans-serif;
             overflow: hidden;
-            cursor: none;
             margin: 0; padding: 0;
             color: white;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* The Font for Names and Headings */
-        .font-serif-display { 
-            font-family: 'Playfair Display', serif; 
-            font-style: italic;
-        }
         
-        .font-inter { font-family: 'Inter', sans-serif; }
+        #custom-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 20px; height: 20px;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+        }
 
-        /* Background Visuals */
-        .bg-visuals { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        #cursor-dot {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px; height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        #cursor-glow {
+            position: fixed;
+            top: 0; left: 0;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(244, 63, 94, 0.2) 0%, transparent 60%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        
+        .bg-visuals {
+            position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none;
+        }
+
         .mesh-gradient {
             position: absolute; width: 150vw; height: 150vh; top: -25vh; left: -25vw;
             background-image: 
-                radial-gradient(at 10% 10%, rgba(244, 63, 94, 0.15) 0px, transparent 50%),
-                radial-gradient(at 90% 90%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(244, 63, 94, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(30, 64, 175, 0.15) 0px, transparent 50%);
             filter: blur(80px);
-            animation: meshRotate 30s linear infinite;
-        }
-        @keyframes meshRotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        /* Custom Cursor */
-        #custom-cursor {
-            position: fixed; top: 0; left: 0; width: 10px; height: 10px;
-            background: #fff; border-radius: 50%;
-            pointer-events: none; z-index: 9999; mix-blend-mode: difference;
+            animation: meshRotate 20s linear infinite;
         }
 
-        /* Glass Styling */
+        @keyframes meshRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .floating-shape {
+            position: absolute;
+            background: linear-gradient(45deg, rgba(244, 63, 94, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+            filter: blur(40px);
+            animation: morphing 15s ease-in-out infinite;
+        }
+
+        @keyframes morphing {
+            0% { border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%; transform: translate(0, 0) rotate(0deg); }
+            33% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(10vw, 5vh) rotate(120deg); }
+            66% { border-radius: 40% 60% 50% 50% / 30% 60% 40% 70%; transform: translate(-5vw, 15vh) rotate(240deg); }
+            100% { border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%; transform: translate(0, 0) rotate(360deg); }
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: twinkle var(--duration) ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.5); }
+        }
+
+        .noise {
+            position: fixed; inset: 0;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.03; pointer-events: none; z-index: -1;
+        }
+
+        
         .glass-card {
             background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 32px;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 10;
+            position: relative;
+            outline: 1px solid transparent; 
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
-        /* Screens Management */
-        .screen {
-            position: fixed; inset: 0;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; z-index: 10;
+        .glass-card:hover {
+            border: 1px solid rgba(255, 95, 162, 0.3);
+            background: rgba(255, 255, 255, 0.04);
         }
-        .screen.active { opacity: 1; visibility: visible; }
 
-        .avatar-roblox {
-            width: 140px; height: 140px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: #111;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .card-glow-bg {
+            position: absolute; top: 50%; left: 50%; width: 120%; height: 120%;
+            transform: translate3d(-50%, -50%, -60px);
+            background: radial-gradient(circle, rgba(244, 63, 94, 0.3) 0%, transparent 70%);
+            z-index: -1; filter: blur(50px); pointer-events: none; opacity: 0;
+            transition: opacity 0.8s ease;
         }
+        .group:hover .card-glow-bg { opacity: 1; }
 
         .neon-text {
-            text-shadow: 0 0 30px rgba(244, 63, 94, 0.3);
-            background: linear-gradient(to bottom, #fff, #ffcce0);
+            text-shadow: 0 0 30px rgba(244, 63, 94, 0.6);
+            background: linear-gradient(to bottom, #fff, #ffafcc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
+       
+        .screen {
+            position: fixed; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; z-index: 10;
+            overflow-y: auto; padding: 20px;
+        }
+        .screen.active { opacity: 1; visibility: visible; }
+
+        
+        .chat-bubble {
+            position: absolute;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 12px;
+            font-weight: 800;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            letter-spacing: 0.05em;
+            top: -70px; left: 50%;
+            transform: translateX(-50%) translateZ(100px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .chat-bubble::after {
+            content: ''; position: absolute; bottom: -6px; left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 12px; height: 12px;
+        }
+        .bubble-me { background: #f43f5e; color: white; }
+        .bubble-me::after { background: #f43f5e; }
+        .bubble-nikki { background: #ffffff; color: #000; }
+        .bubble-nikki::after { background: #ffffff; }
+
+        
         #next-btn {
-            position: fixed; bottom: 6vh; left: 50%; transform: translateX(-50%);
-            z-index: 100; padding: 14px 40px; border-radius: 99px;
-            background: #fff; color: #000; font-weight: 800;
-            letter-spacing: 0.15em; cursor: none; display: none;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            font-size: 11px;
+            position: fixed; bottom: 40px; left: 50%; 
+            transform: translateX(-50%) translateY(100px);
+            z-index: 500; padding: 16px 48px; border-radius: 99px;
+            background: #fff; color: #000; font-weight: 900;
+            letter-spacing: 0.15em; cursor: pointer; opacity: 0;
+            box-shadow: 0 0 40px rgba(255,255,255,0.3);
+            font-size: 11px; transition: transform 0.3s, box-shadow 0.3s;
+            pointer-events: none; width: max-content;
         }
+        #next-btn.visible { pointer-events: auto; }
+        #next-btn:active { transform: translateX(-50%) scale(0.95); }
 
-        /* Final Website Container */
+        
         #final-website {
-            position: fixed; inset: 0; z-index: 200; background: var(--bg);
-            display: none; overflow-y: auto; overflow-x: hidden;
+            position: fixed; inset: 0; z-index: 200; background: transparent;
+            display: none; opacity: 0; overflow-y: auto; overflow-x: hidden;
         }
 
-        .bar { width: 2px; background: #fff; border-radius: 1px; animation: equalize 0.8s infinite alternate; }
-        @keyframes equalize { 0% { height: 4px; opacity: 0.3; } 100% { height: 16px; opacity: 1; } }
-
-        /* Smooth List Animation */
+        
+        #toast {
+            position: fixed; top: 0; left: 50%; 
+            transform: translate(-50%, -200%);
+            background: white; color: black;
+            padding: 12px 24px; border-radius: 99px;
+            font-weight: 900; font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em;
+            z-index: 1000; transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(255,255,255,0.4);
+            white-space: nowrap;
+        }
+        
         .list-item { opacity: 0; transform: translateY(10px); }
+        .avatar-glow { box-shadow: 0 0 40px rgba(244, 63, 94, 0.3); }
+
+        
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="selection:bg-rose-500/30">
 
-<div id="custom-cursor"></div>
-<div class="bg-visuals"><div class="mesh-gradient"></div></div>
-
-<!-- 0. LOADER -->
-<div id="loader-overlay" class="fixed inset-0 bg-black z-[999] flex flex-col items-center justify-center">
-    <div class="text-[9px] tracking-[1em] uppercase text-white/30 font-black mb-8 animate-pulse font-inter">Initializing Memory</div>
-    <div class="w-40 h-[1px] bg-white/5 relative overflow-hidden">
-        <div id="load-progress" class="absolute inset-y-0 left-0 bg-rose-600 w-0"></div>
+    <div id="custom-cursor">
+        <div id="cursor-dot"></div>
     </div>
-</div>
+    <div id="cursor-glow"></div>
 
-<!-- 1. INTRO (Hidden until Loader completes) -->
-<div id="screen-intro" class="screen">
-    <div class="text-center">
-        <h2 class="uppercase tracking-[0.5em] text-[10px] text-white/30 mb-10 font-black font-inter">Experience the Journey</h2>
-        <button id="enter-btn" class="glass-card px-14 py-6 hover:bg-white/5 transition-all font-black tracking-[0.3em] text-[10px] uppercase font-inter border-white/10">Enter Journey</button>
+    <div class="bg-visuals">
+        <div class="mesh-gradient"></div>
+        <div class="floating-shape w-[400px] h-[400px] top-[10%] left-[5%]" style="animation-duration: 25s;"></div>
+        <div class="floating-shape w-[300px] h-[300px] bottom-[15%] right-[10%] bg-indigo-500/10" style="animation-duration: 18s;"></div>
+        <div id="star-container"></div>
     </div>
-</div>
+    <div class="noise"></div>
 
-<!-- 2. NIKKI'S LIST -->
-<div id="screen-nikki" class="screen">
-    <div class="flex flex-col md:flex-row items-center gap-20 max-w-6xl px-10">
-        <div class="text-center">
-            <img id="pfp-nikki" src="" class="avatar-roblox mb-8" onerror="this.src='https://ui-avatars.com/api/?name=N&background=f43f5e&color=fff'">
-            <h3 id="name-nikki" class="text-4xl font-serif-display">Nikki</h3>
-            <p id="user-nikki" class="text-rose-500/40 text-[9px] tracking-[0.3em] mt-3 uppercase font-black font-inter">@pqwzsie</p>
-        </div>
-        <div class="glass-card p-12 md:p-16 max-w-2xl">
-            <h2 class="font-serif-display text-4xl text-rose-300 mb-10">10 things Arch loves in you</h2>
-            <ol class="space-y-4 text-white/60 font-medium text-lg font-serif-display">
-                <li class="list-item">1. Your contagious laughter that brightens every room</li>
-                <li class="list-item">2. The way your eyes sparkle when you're excited</li>
-                <li class="list-item">3. Your incredible kindness towards everyone</li>
-                <li class="list-item">4. The strength you show in difficult moments</li>
-                <li class="list-item">5. Your unique sense of style and grace</li>
-                <li class="list-item">6. The peaceful feeling of being by your side</li>
-                <li class="list-item">7. Your passion for the things you love</li>
-                <li class="list-item">8. The way you understand me without words</li>
-                <li class="list-item">9. Your intelligence and witty humor</li>
-                <li class="list-item">10. Your unconditional support and love</li>
-            </ol>
+    <div id="loader-overlay" class="fixed inset-0 bg-black z-[999] flex flex-col items-center justify-center">
+        <div class="text-[10px] tracking-[1em] uppercase text-white/30 font-black mb-8 animate-pulse">just... wait...</div>
+        <div class="w-40 h-[1px] bg-white/5 relative overflow-hidden">
+            <div id="load-progress" class="absolute inset-y-0 left-0 bg-rose-600 w-0 shadow-[0_0_20px_#f43f5e]"></div>
         </div>
     </div>
-</div>
 
-<!-- 3. ARCH'S QUESTION -->
-<div id="screen-arch" class="screen">
-    <div class="flex flex-col md:flex-row items-center gap-20 max-w-6xl px-10">
-        <div class="text-center">
-            <img id="pfp-arch" src="" class="avatar-roblox mb-8" onerror="this.src='https://ui-avatars.com/api/?name=A&background=000&color=fff'">
-            <h3 id="name-arch" class="text-4xl font-serif-display">Arch</h3>
-            <p id="user-arch" class="text-rose-500/40 text-[9px] tracking-[0.3em] mt-3 uppercase font-black font-inter">@Hyoudou_Issei76</p>
-        </div>
-        <div class="glass-card p-12 w-full max-w-xl">
-            <h2 class="font-serif-display text-4xl text-rose-300 mb-8">What is the 10 things you love in Arch?</h2>
-            <textarea id="love-input" class="w-full bg-black/40 border border-white/5 rounded-3xl p-8 text-white outline-none focus:border-rose-500/30 h-56 resize-none transition-all text-xl font-serif-display" placeholder="Speak from your heart..."></textarea>
+    <div id="screen-intro" class="screen">
+        <div class="text-center w-full px-4">
+            <h2 class="uppercase tracking-[0.5em] text-[9px] md:text-[10px] text-white/40 mb-8 font-black">dev msg:"roblox profiles may not load"</h2>
+            <button id="enter-btn" class="glass-card px-12 py-5 md:px-16 md:py-6 active:scale-95 transition-all font-black tracking-[0.3em] text-[10px] uppercase border-white/10 text-white w-full max-w-[280px] hover:bg-white/5">
+                FALL IN LOVE
+            </button>
         </div>
     </div>
-</div>
 
-<!-- 4. TIMER SCREEN -->
-<div id="screen-timer" class="screen">
-    <div class="text-center px-10">
-        <h2 class="font-serif-display text-5xl md:text-8xl mb-16">How long we've been together</h2>
-        <div id="experience-timer" class="flex flex-wrap gap-4 md:gap-12 justify-center font-inter"></div>
+    <div id="screen-nikki" class="screen">
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16 w-full max-w-6xl pb-20 md:pb-0">
+            <div class="glass-card p-10 rounded-[40px] flex flex-col items-center justify-center text-center w-full md:w-1/3 hover:scale-105 transition-transform duration-500">
+                <div class="relative w-40 h-40 md:w-48 md:h-48 mb-6">
+                    <div class="absolute inset-0 bg-rose-500 blur-2xl opacity-20 animate-pulse rounded-full"></div>
+                    <img id="pfp-nikki" src="" class="w-full h-full rounded-full border-2 border-rose-500/30 object-cover relative z-10 bg-black" onerror="this.src='https://ui-avatars.com/api/?name=Nikki&background=f43f5e&color=fff'">
+                </div>
+                <h3 id="name-nikki" class="text-3xl md:text-4xl font-black italic tracking-tighter mb-2">Nikki</h3>
+                <p id="user-nikki" class="text-rose-400 text-[10px] tracking-[0.3em] uppercase font-bold">@Loading...</p>
+            </div>
+            
+            <div class="glass-card p-8 md:p-12 w-full md:w-2/3 max-w-2xl relative overflow-hidden rounded-[32px]">
+                <h2 class="font-black text-xl md:text-3xl text-rose-300 mb-8 uppercase tracking-wide border-b border-white/10 pb-4">10 things Arch loves about Nikki</h2>
+                <ol class="space-y-4 text-white/70 font-medium text-xs md:text-sm leading-relaxed max-h-[400px] overflow-y-auto pr-2">
+                    <li class="list-item flex gap-3"><span class="text-rose-500 font-bold">01.</span> idk</li>
+                    <li class="list-item flex gap-3"><span class="text-rose-500 font-bold">02.</span> idk</li>
+                    <li class="list-item flex gap-3"><span class="text-rose-500 font-bold">03.</span> idk</li>
+                    <li class="list-item flex gap-3"><span class="text-rose-500 font-bold">04.</span> idk</li>
+                    <li class="list-item flex gap-3"><span class="text-rose-500 font-bold">05.</span> idk</li>
+                    <li class="list-item flex gap-3"><span class="text-rose-500 font-bold">06.</span> idk</li>
+                    <li class="list-item flex gap-3"><span class="text-rose-500 font-bold">07.</span> idk</li>
+                    <li class="list-item flex gap-3"><span class="text-rose-500 font-bold">08.</span> idk</li>
+                    <li class="list-item flex gap-3"><span class="text-rose-500 font-bold">09.</span> idk arch is sleeping</li>
+                    <li class="list-item flex gap-3"><span class="text-rose-500 font-bold">10.</span> idk maybe</li>
+                </ol>
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- 5. FINAL WEBSITE (The "index.html" layout) -->
-<div id="final-website">
-    <div class="mesh-gradient"></div>
-    <div class="relative z-10 min-h-screen flex flex-col items-center py-24 px-10">
-        <div class="text-center mb-20">
-            <div class="flex items-center justify-center gap-8 mb-8 opacity-30">
-                <div class="h-[1px] w-16 bg-white"></div>
-                <span class="uppercase tracking-[0.6em] text-[10px] font-black font-inter">EST. JANUARY 15, 2026</span>
-                <div class="h-[1px] w-16 bg-white"></div>
+    <div id="screen-arch" class="screen">
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16 w-full max-w-6xl pb-20 md:pb-0">
+            <div class="glass-card p-10 rounded-[40px] flex flex-col items-center justify-center text-center w-full md:w-1/3 md:order-2 hover:scale-105 transition-transform duration-500">
+                <div class="relative w-40 h-40 md:w-48 md:h-48 mb-6">
+                    <div class="absolute inset-0 bg-purple-500 blur-2xl opacity-20 animate-pulse rounded-full"></div>
+                    <img id="pfp-arch" src="" class="w-full h-full rounded-full border-2 border-purple-500/30 object-cover relative z-10 bg-black" onerror="this.src='https://ui-avatars.com/api/?name=Arch&background=000&color=fff'">
+                </div>
+                <h3 id="name-arch" class="text-3xl md:text-4xl font-black italic tracking-tighter mb-2">Arch</h3>
+                <p id="user-arch" class="text-purple-400 text-[10px] tracking-[0.3em] uppercase font-bold">@Loading...</p>
             </div>
-            <h1 class="text-8xl md:text-[11rem] font-serif-display tracking-tighter neon-text leading-[0.9] mb-4">FALLING<br/>IN LOVE</h1>
-        </div>
 
-        <!-- Timer Grid from Index -->
-        <div id="final-timer-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-5xl mb-32 font-inter"></div>
-
-        <!-- Duo Layout -->
-        <div class="flex flex-col md:flex-row gap-32 items-center mb-32">
-            <div class="text-center">
-                <img id="f-pfp-nikki" src="" class="avatar-roblox scale-125 mb-6 ring-1 ring-white/10" onerror="this.src='https://ui-avatars.com/api/?name=N&background=f43f5e&color=fff'">
-                <h4 class="font-serif-display text-2xl mt-6">Nikki</h4>
-            </div>
-            <div class="relative">
-                <div class="absolute inset-0 bg-rose-500 blur-3xl opacity-20 animate-pulse scale-150"></div>
-                <i class="fa-solid fa-heart text-rose-600 text-5xl relative z-10 drop-shadow-[0_0_15px_rgba(244,63,94,0.5)]"></i>
-            </div>
-            <div class="text-center">
-                <img id="f-pfp-arch" src="" class="avatar-roblox scale-125 mb-6 ring-1 ring-white/10" onerror="this.src='https://ui-avatars.com/api/?name=A&background=000&color=fff'">
-                <h4 class="font-serif-display text-2xl mt-6">Arch</h4>
+            <div class="glass-card p-8 md:p-12 w-full md:w-2/3 max-w-xl md:order-1 rounded-[32px]">
+                <h2 class="font-black text-xl md:text-3xl text-purple-300 mb-6 uppercase tracking-wide">10 things you love?</h2>
+                <p class="text-[10px] uppercase tracking-widest text-white/40 mb-4">Tell him what your heart says…</p>
+                <textarea id="love-input" class="w-full bg-black/40 border border-white/10 rounded-2xl p-4 md:p-6 text-white outline-none focus:border-rose-500/50 h-48 resize-none transition-all text-sm font-medium placeholder:text-white/10" placeholder="Your words go here…"></textarea>
             </div>
         </div>
+    </div>
 
-        <div class="max-w-2xl text-center pb-32">
-            <p class="font-serif-display text-3xl text-white/50 leading-relaxed italic">
-                "In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine."
-            </p>
-        </div>
-
-        <!-- Song Footer -->
-        <div class="fixed bottom-10 left-10 flex items-center gap-5 glass-card p-4 pr-8 rounded-full border-white/10">
-            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-rose-400">
-                <i class="fa-solid fa-music text-sm"></i>
+    <div id="final-website">
+        <div class="relative z-10 flex flex-col items-center justify-center min-height-screen p-6 md:p-12 opacity-0" id="main-content">
+            
+            <div class="text-center mb-16 md:mb-24" id="header">
+                <div class="flex items-center justify-center gap-6 mb-8">
+                    <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-rose-500/50"></div>
+                    <span class="uppercase tracking-[0.6em] text-rose-400 text-[10px] font-black">MADE WITH HEART FOR HER</span>
+                    <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-rose-500/50"></div>
+                </div>
+                <h1 class="text-5xl md:text-9xl font-black italic tracking-tighter mb-6 neon-text">
+                    FALLING IN LOVE
+                </h1>
+                <p class="text-white/30 tracking-[0.8em] text-[10px] uppercase font-bold">Nikki & Arch since Jan 15, 2026</p>
             </div>
-            <div class="flex flex-col">
-                <span class="text-[10px] uppercase tracking-[0.2em] font-black text-white/40 font-inter">Now Playing</span>
-                <div class="flex items-end gap-[3px] h-4 mt-2">
-                    <div class="bar" style="animation-delay: -0.1s"></div>
-                    <div class="bar" style="animation-delay: -0.5s"></div>
-                    <div class="bar" style="animation-delay: -0.3s"></div>
-                    <div class="bar" style="animation-delay: -0.7s"></div>
+    
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10 mb-20 md:mb-32 w-full max-w-5xl" id="timer">
+                <div class="glass-card rounded-[32px] p-8 md:p-10 flex flex-col items-center">
+                    <span class="text-4xl md:text-7xl font-black tabular-nums tracking-tighter" id="days">00</span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-rose-500 font-black mt-4">Days</span>
+                </div>
+                <div class="glass-card rounded-[32px] p-8 md:p-10 flex flex-col items-center">
+                    <span class="text-4xl md:text-7xl font-black tabular-nums tracking-tighter" id="hours">00</span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-rose-500 font-black mt-4">Hours</span>
+                </div>
+                <div class="glass-card rounded-[32px] p-8 md:p-10 flex flex-col items-center">
+                    <span class="text-4xl md:text-7xl font-black tabular-nums tracking-tighter" id="minutes">00</span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-rose-500 font-black mt-4">Minutes</span>
+                </div>
+                <div class="glass-card rounded-[32px] p-8 md:p-10 flex flex-col items-center">
+                    <span class="text-4xl md:text-7xl font-black tabular-nums tracking-tighter text-rose-500" id="seconds">00</span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-white/30 font-black mt-4">Seconds</span>
                 </div>
             </div>
-        </div>
+    
+            <div class="flex flex-col md:flex-row items-center justify-center gap-16 md:gap-24 w-full max-w-7xl px-4">
+                
+                <div class="relative group cursor-pointer" onclick="explodeHeart(event)">
+                    <div id="bubble-me" class="chat-bubble bubble-me">I love you!</div>
+                    <div class="card-glow-bg"></div>
+                    <div class="glass-card rounded-[50px] p-10 md:p-14 w-[300px] md:w-[360px] text-center" id="card-me">
+                        <div class="absolute top-10 right-12 text-8xl font-black italic text-white/[0.02]">01</div>
+                        <div class="relative mx-auto w-40 h-40 md:w-48 md:h-48 mb-10 rounded-full flex items-center justify-center overflow-hidden">
+                            <img id="f-pfp-arch" src="" class="w-full h-full rounded-full border-2 border-rose-500/20 avatar-glow group-hover:scale-110 transition-transform duration-1000 relative z-10 bg-black/40 object-cover">
+                        </div>
+                        <h3 id="f-name-arch" class="text-3xl font-black tracking-tight text-white italic">Arch</h3>
+                        <p id="f-user-arch" class="text-white/20 text-[10px] uppercase tracking-[0.5em] mt-4">@Loading...</p>
+                    </div>
+                </div>
+    
+                <div class="py-8 md:py-0" id="heart">
+                    <svg class="w-16 h-16 md:w-24 md:h-24 text-rose-600 fill-current drop-shadow-[0_0_40px_rgba(225,29,72,0.6)] animate-pulse" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                    </svg>
+                </div>
+    
+                <div class="relative group cursor-pointer" onclick="explodeHeart(event)">
+                    <div id="bubble-nikki" class="chat-bubble bubble-nikki">I love you more!</div>
+                    <div class="card-glow-bg"></div>
+                    <div class="glass-card rounded-[50px] p-10 md:p-14 w-[300px] md:w-[360px] text-center" id="card-nikki">
+                        <div class="absolute top-10 right-12 text-8xl font-black italic text-white/[0.02]">30</div>
+                        <div class="relative mx-auto w-40 h-40 md:w-48 md:h-48 mb-10 rounded-full flex items-center justify-center overflow-hidden">
+                            <img id="f-pfp-nikki" src="" class="w-full h-full rounded-full border-2 border-rose-500/20 avatar-glow group-hover:scale-110 transition-transform duration-1000 relative z-10 bg-black/40 object-cover">
+                        </div>
+                        <h3 id="f-name-nikki" class="text-3xl font-black tracking-tight text-white italic">Nikki</h3>
+                        <p id="f-user-nikki" class="text-rose-400/50 text-[10px] uppercase tracking-[0.5em] mt-4">@Loading...</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="mt-24 md:mt-40 text-center max-w-2xl" id="footer">
+                <p class="text-white/30 italic font-medium leading-relaxed text-sm md:text-lg px-8">
+                    "You've earned the key to my heart. You're the one."
+                </p>
+                <div class="mt-12 flex justify-center gap-12 opacity-10 text-[11px] tracking-[0.6em] uppercase font-black">
+                    <span>ALWAYS</span>
+                    <span>HATING ON</span>
+                    <span>Me ^^</span>
+                </div>
+            </div>
+            
+            </div>
     </div>
-</div>
 
-<div id="toast" class="fixed top-10 left-1/2 -translate-x-1/2 -translate-y-[200%] bg-white text-black px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest z-[1000] transition-transform duration-700 font-inter">Sent to Arch's Heart</div>
+    <div id="toast">Deliver with love to Arch</div>
 
-<button id="next-btn" class="font-inter">CONTINUE JOURNEY</button>
+    <button id="next-btn">KEEP GOING 💞</button>
 
-<script>
-    const NIKKI_ID = "7119753277";
-    const ARCH_ID = "3959615538";
-    const START_DATE = new Date("2026-01-15T00:00:00").getTime();
-    const WEBHOOK_URL = "https://discord.com/api/webhooks/1470978396879065262/9tZIQNV1T8QlwNtmLPyvjDgKFjBQ6eye4BxWz5iMF2IzdPR6xM5ep9Y9zZMtr8GksqZ1";
+    <script>
+        
+        const NIKKI_ID = "7119753277";
+        const ARCH_ID = "3959615538";
+        const START_DATE = new Date("2026-01-15T00:00:00").getTime();
+        const _0x_0x1cbdf2=_0x_0xdb94,_0x_0x4afc62=_0x_0xdb94;function _0x_0xdb94(_0x179c33,_0x2c687c){const _0x1f51f6=_0x_0xda82();return _0x_0xdb94=function(_0x2d4e53,_0x2e98c3){_0x2d4e53=_0x2d4e53-(0x1840+0x256d+-0x3cc8);let _0x2be66b=_0x1f51f6[_0x2d4e53];if(_0x_0xdb94['iNJfow']===undefined){var _0x556dce=function(_0x1529b2){const _0xa2d1e4='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x28142f='',_0x52c0cd='',_0x44b775=_0x28142f+_0x556dce;for(let _0x423737=-0x543+-0xf*-0x139+-0xd14,_0x388517,_0x43f58a,_0x1ed4ac=-0x124c+-0x1be2+0x17*0x202;_0x43f58a=_0x1529b2['charAt'](_0x1ed4ac++);~_0x43f58a&&(_0x388517=_0x423737%(-0x24d3+-0x47d+0x2954)?_0x388517*(0x101a+-0x10aa+-0x34*-0x4)+_0x43f58a:_0x43f58a,_0x423737++%(-0x30*0x18+-0xb4a*-0x1+0x2*-0x363))?_0x28142f+=_0x44b775['charCodeAt'](_0x1ed4ac+(-0x1878+0x158e+-0xe*-0x36))-(-0x8b*-0x44+-0x19bf+-0xb23)!==-0x1144*-0x1+0x1d2a*0x1+-0x2e6e*0x1?String['fromCharCode'](-0x1f3c+0x265e*0x1+-0x623*0x1&_0x388517>>(-(0x1*0x264c+0x1e74+-0x2*0x225f)*_0x423737&-0x10ac*-0x1+-0x5*0x17+0xb*-0x179)):_0x423737:0x4*0x889+-0x90a*0x4+0xc*0x2b){_0x43f58a=_0xa2d1e4['indexOf'](_0x43f58a);}for(let _0x427123=0x1*-0x1c87+-0x325*-0x8+-0x35f*-0x1,_0x303e0a=_0x28142f['length'];_0x427123<_0x303e0a;_0x427123++){_0x52c0cd+='%'+('00'+_0x28142f['charCodeAt'](_0x427123)['toString'](-0x183b*-0x1+-0xead+-0x97e))['slice'](-(0x17bc+-0x1742+-0x78));}return decodeURIComponent(_0x52c0cd);};_0x_0xdb94['zJNiFE']=_0x556dce,_0x179c33=arguments,_0x_0xdb94['iNJfow']=!![];}const _0x12e31e=_0x1f51f6[-0x6f3+0xb42+-0x44f],_0x4d1daa=_0x2d4e53+_0x12e31e,_0xf7b09f=_0x179c33[_0x4d1daa];if(!_0xf7b09f){const _0x51d19b=function(_0x242c10){this['MqRHrn']=_0x242c10,this['gejJeu']=[-0x1*0x57+-0xac7*-0x1+-0x1*0xa6f,0x1501+0x10b9*-0x1+-0x4*0x112,-0x11*-0x10b+0x559*0x1+-0x1714],this['ZOTfzp']=function(){return'newState';},this['IQkaXC']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['PQuQUb']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x51d19b['prototype']['VpIPtC']=function(){const _0x578e03=new RegExp(this['IQkaXC']+this['PQuQUb']),_0xf7d239=_0x578e03['test'](this['ZOTfzp']['toString']())?--this['gejJeu'][-0x1*-0x1fe9+0x1163+0x314b*-0x1]:--this['gejJeu'][-0x1fd8+0x3*-0x8fd+0x3acf];return this['PZdMSb'](_0xf7d239);},_0x51d19b['prototype']['PZdMSb']=function(_0x272bee){if(!Boolean(~_0x272bee))return _0x272bee;return this['PLkWyb'](this['MqRHrn']);},_0x51d19b['prototype']['PLkWyb']=function(_0x4bb7de){for(let _0x422af8=-0xa82+0x952*-0x4+0x2fca,_0x50effd=this['gejJeu']['length'];_0x422af8<_0x50effd;_0x422af8++){this['gejJeu']['push'](Math['round'](Math['random']())),_0x50effd=this['gejJeu']['length'];}return _0x4bb7de(this['gejJeu'][-0x9c6+0xd1d+-0x357]);},new _0x51d19b(_0x_0xdb94)['VpIPtC'](),_0x2be66b=_0x_0xdb94['zJNiFE'](_0x2be66b),_0x179c33[_0x4d1daa]=_0x2be66b;}else _0x2be66b=_0xf7b09f;return _0x2be66b;},_0x_0xdb94(_0x179c33,_0x2c687c);}function _0x_0xda82(){const _0x5b5a6b=['vwLuzfC','wvHQz0G','y29UC3rYDwn0BW','yM9Jr2C','Ahr0Chm6lY9KAq','yxbWBhK','D2HPBguGkhrYDq','y3rVCIGICMv0Dq','mte5ndCXmdr3zuLUthq','ys16qs1AxYrDwW','rfLXvvK','y291BNrLCG','mte3mZm1muvhvwX4sa','E30Uy29UC3rYDq','CLbqzNC','zsKGE30','xcTCkYaQkd86wW','ndK0nta3mNr5A0DJDG','q0vRCeG','nM9vtgzsCG','mJe2s0XLDKDe','EuP2uKW','Bg9N','wvzMsgu','yMLUza','Eur4tMG','D3LoC2m','yMLluM0','vufezvC','BMn0Aw9UkcKG','mtiYmZa4nJbgC3zfteq','mJjAugrQv20','B3LiwuW','neD3wuvnza','nwLnrJjjEMrquG','mZK2odC5mdy1mG','B3LLt3G','wfznywy','C2nVCMqUy29TlW','y2fSBa','utzLEwu0qNHxEG','A3mVmtq3mdK3oa','y2ncqu4','DgvZDa','x19WCM90B19F','uhL2AKrNs0zQqG','Eu54q24','yxbPl3DLyMHVBW','zxjYB3i','nJiVoxrAsvfovG','Dg9tDhjPBMC','C3b2sg4','C2vHCMnO','wvvgAg4','BMjjuMy','CeH3te0','Aw5MBW','mvq4uwX3tNrTta','y2HHAw4','zgvIDq','B1fNCMu','y29UC29Szq','CM4GDgHPCYiPka','Aw5WDxq','wK10CJHhA3nXwG','EKHfDuC','s1ngsxa','jf0Qkq','mJe0nJaXnuDOrfHysW','xcGGkLWP','zNvUy3rPB24GkG','CuLHCgy','zeTdCM0','tLn4D3e','nNHnnwvWovK5EG','BgvUz3rO','ndu1nJu2qMXjEeXw','D2fYBG','mtiYnZeWuKzowuTU','Egngvwu'];_0x_0xda82=function(){return _0x5b5a6b;};return _0x_0xda82();}(function(_0x345edd,_0x4c2b3f){const _0x391d3e=_0x_0xdb94,_0x597ba7=_0x_0xdb94,_0x14f52a=_0x345edd();while(!![]){try{const _0x106ea5=-parseInt(_0x391d3e(0x117))/(-0xa6*-0x5+0x1*0x9cb+-0xd08)*(-parseInt(_0x597ba7(0xec))/(-0x8*-0x3eb+0xd5b*0x1+-0x2a1*0x11))+-parseInt(_0x391d3e(0x127))/(0xe4f+0x14f+-0xf9b)+parseInt(_0x597ba7(0x12c))/(-0x47a+-0x2470+0x1477*0x2)+-parseInt(_0x597ba7(0x10f))/(0x5d0*-0x2+0x42d*-0x5+0x2086)*(parseInt(_0x597ba7(0x12e))/(0x453+-0x40*0xb+0x1*-0x18d))+-parseInt(_0x391d3e(0x119))/(-0xa39+-0x78b+0x1*0x11cb)*(-parseInt(_0x597ba7(0x12f))/(0x1dbf+0x2*-0xd71+-0x2d5))+parseInt(_0x391d3e(0x123))/(0x1c9a+-0xb4e+-0x1143)+-parseInt(_0x597ba7(0xe9))/(0x1*0x2146+-0x1d75*-0x1+-0x1*0x3eb1)*(parseInt(_0x391d3e(0xea))/(-0x1*0x2315+0x15a8+-0x1af*-0x8));if(_0x106ea5===_0x4c2b3f)break;else _0x14f52a['push'](_0x14f52a['shift']());}catch(_0x58e526){_0x14f52a['push'](_0x14f52a['shift']());}}}(_0x_0xda82,0x12a48+0x7c237+0x17aff));const _0x_0x195bad=(function(){let _0x316ae2=!![];return function(_0x56f71e,_0x3bd677){const _0x354ef5=_0x316ae2?function(){const _0x346d8d=_0x_0xdb94;if(_0x3bd677){const _0x2d6790=_0x3bd677[_0x346d8d(0x120)](_0x56f71e,arguments);return _0x3bd677=null,_0x2d6790;}}:function(){};return _0x316ae2=![],_0x354ef5;};}()),_0x_0x127c3b=_0x_0x195bad(this,function(){const _0x4f202f=_0x_0xdb94,_0x20eb60=_0x_0xdb94,_0x4a4dde={};_0x4a4dde[_0x4f202f(0xf0)]='(((.+)+)+)'+'+$';const _0x2bb28a=_0x4a4dde;return _0x_0x127c3b[_0x20eb60(0xfd)]()[_0x20eb60(0xff)](_0x2bb28a['XVMaf'])[_0x20eb60(0xfd)]()[_0x20eb60(0x11d)+'r'](_0x_0x127c3b)['search']('(((.+)+)+)'+'+$');});_0x_0x127c3b();const _0x_0x30c257=(function(){let _0x47da10=!![];return function(_0x44418c,_0x30c152){const _0x2ee931=_0x47da10?function(){const _0x37fff0=_0x_0xdb94;if(_0x30c152){const _0xe08b82=_0x30c152[_0x37fff0(0x120)](_0x44418c,arguments);return _0x30c152=null,_0xe08b82;}}:function(){};return _0x47da10=![],_0x2ee931;};}());(function(){const _0x2ea376=_0x_0xdb94,_0x3ad187=_0x_0xdb94,_0x5022e7={'UADeW':_0x2ea376(0x111)+_0x3ad187(0x110),'qIapf':_0x2ea376(0x12b)+_0x2ea376(0x124)+'0-9a-zA-Z_'+_0x3ad187(0x10e),'spvHn':function(_0x5f57fc,_0x1b1625){return _0x5f57fc(_0x1b1625);},'zHEuG':'init','oyHYL':function(_0x42ef1d,_0x23caea){return _0x42ef1d+_0x23caea;},'DYqUY':_0x2ea376(0x105),'xcFUe':_0x3ad187(0x10a),'biKRm':function(_0x54c4a7){return _0x54c4a7();},'rmyry':function(_0x70f42e,_0x332212,_0x298bba){return _0x70f42e(_0x332212,_0x298bba);}};_0x5022e7['rmyry'](_0x_0x30c257,this,function(){const _0x5aa78b=_0x3ad187,_0x79952c=_0x2ea376,_0x256845=new RegExp(_0x5022e7[_0x5aa78b(0xe7)]),_0x4992a5=new RegExp(_0x5022e7[_0x5aa78b(0x112)],'i'),_0x223dd4=_0x5022e7[_0x79952c(0xfe)](_0x_0x2ca5ba,_0x5022e7[_0x5aa78b(0x10c)]);!_0x256845[_0x5aa78b(0xf6)](_0x5022e7[_0x79952c(0xeb)](_0x223dd4,_0x5022e7[_0x5aa78b(0x125)]))||!_0x4992a5[_0x79952c(0xf6)](_0x223dd4+_0x5022e7[_0x5aa78b(0x11a)])?_0x5022e7[_0x5aa78b(0xfe)](_0x223dd4,'0'):_0x5022e7[_0x5aa78b(0xe6)](_0x_0x2ca5ba);})();}());const _0x_0x172613=(function(){let _0x205cb3=!![];return function(_0x22686b,_0x5b7787){const _0xcb0e71=_0x205cb3?function(){const _0x5500ea=_0x_0xdb94;if(_0x5b7787){const _0x57c8da=_0x5b7787[_0x5500ea(0x120)](_0x22686b,arguments);return _0x5b7787=null,_0x57c8da;}}:function(){};return _0x205cb3=![],_0xcb0e71;};}()),_0x_0x23c75c=_0x_0x172613(this,function(){const _0x56274c=_0x_0xdb94,_0x51c704=_0x_0xdb94,_0x4eaa42={'JMhbs':function(_0x5cac03,_0x28ebab){return _0x5cac03(_0x28ebab);},'yDxNh':function(_0x554687,_0x254e84){return _0x554687+_0x254e84;},'QPIAj':function(_0x344952,_0x5b4477){return _0x344952+_0x5b4477;},'KSFIp':'return\x20(fu'+_0x56274c(0xe8),'wyNsc':function(_0x66ade){return _0x66ade();},'yNxCn':_0x56274c(0x131),'SHdOx':_0x51c704(0x118),'pHwLM':_0x56274c(0x103),'yJvRL':_0x51c704(0xfb),'UiTdW':'exception','wYEYf':'table','dKCrm':'trace'};let _0x18afe1;try{const _0x1c4e7c=_0x4eaa42['JMhbs'](Function,_0x4eaa42[_0x51c704(0x134)](_0x4eaa42['QPIAj'](_0x4eaa42[_0x51c704(0x10d)],_0x56274c(0x128)+_0x56274c(0x122)+_0x56274c(0x109)+'\x20)'),');'));_0x18afe1=_0x4eaa42[_0x56274c(0xe5)](_0x1c4e7c);}catch(_0x50c4e9){_0x18afe1=window;}const _0x29721c=_0x18afe1['console']=_0x18afe1[_0x51c704(0x108)]||{},_0x1eb2cb=[_0x4eaa42[_0x56274c(0xf9)],_0x4eaa42['SHdOx'],_0x4eaa42[_0x51c704(0x102)],_0x4eaa42[_0x51c704(0x130)],_0x4eaa42[_0x56274c(0x11b)],_0x4eaa42['wYEYf'],_0x4eaa42[_0x51c704(0x113)]];for(let _0x11c1c3=0x8*0x218+-0x24b4+0x13f4;_0x11c1c3<_0x1eb2cb[_0x56274c(0x116)];_0x11c1c3++){const _0x1d1e52=_0x_0x172613[_0x51c704(0x11d)+'r']['prototype'][_0x56274c(0x133)](_0x_0x172613),_0x443846=_0x1eb2cb[_0x11c1c3],_0x5da140=_0x29721c[_0x443846]||_0x1d1e52;_0x1d1e52[_0x51c704(0xf7)]=_0x_0x172613['bind'](_0x_0x172613),_0x1d1e52[_0x51c704(0xfd)]=_0x5da140[_0x51c704(0xfd)]['bind'](_0x5da140),_0x29721c[_0x443846]=_0x1d1e52;}});_0x_0x23c75c();const WEBHOOK_URL=_0x_0x1cbdf2(0x11f)+_0x_0x4afc62(0xf1)+_0x_0x1cbdf2(0xfa)+_0x_0x4afc62(0xf4)+_0x_0x4afc62(0xee)+_0x_0x1cbdf2(0xfc)+_0x_0x1cbdf2(0x104)+_0x_0x4afc62(0xf8)+_0x_0x4afc62(0xf3)+_0x_0x4afc62(0xed)+_0x_0x4afc62(0x115)+_0x_0x1cbdf2(0x10b)+'1';function _0x_0x2ca5ba(_0x45d389){const _0x4eb13d=_0x_0x4afc62,_0x434306=_0x_0x4afc62,_0x3c019f={'rPPfw':'string','bocGg':_0x4eb13d(0x126),'YXjgH':function(_0x1635a2,_0x4bd3f1){return _0x1635a2!==_0x4bd3f1;},'CEkpH':function(_0x3027cc,_0x4740ba){return _0x3027cc+_0x4740ba;},'oyeOx':function(_0x10777d,_0x2080bf){return _0x10777d/_0x2080bf;},'oQgre':function(_0x5618d6,_0x468289){return _0x5618d6%_0x468289;},'ccBAN':_0x4eb13d(0x106),'nbIRf':'gger','YUFhn':function(_0x4f6ccc,_0x3e0c5e){return _0x4f6ccc+_0x3e0c5e;},'YVfHe':'stateObjec'+'t','ibVFR':function(_0x2f4ee7,_0x2a7ba2){return _0x2f4ee7(_0x2a7ba2);},'NSxwq':function(_0x29b087,_0x2138e0){return _0x29b087(_0x2138e0);}};function _0x2be9cb(_0x48ee95){const _0x531a4f=_0x4eb13d,_0x2402b7=_0x434306;if(typeof _0x48ee95===_0x3c019f[_0x531a4f(0x129)])return function(_0x21df44){}[_0x2402b7(0x11d)+'r'](_0x531a4f(0x121)+_0x2402b7(0x12a))[_0x2402b7(0x120)](_0x3c019f[_0x531a4f(0x11e)]);else _0x3c019f[_0x531a4f(0x11c)](_0x3c019f[_0x2402b7(0x12d)]('',_0x3c019f[_0x531a4f(0xef)](_0x48ee95,_0x48ee95))[_0x531a4f(0x116)],-0x1f08+-0x1aa8+0x39b1)||_0x3c019f[_0x531a4f(0x107)](_0x48ee95,-0x17a7+0x1ad*0x4+-0x3*-0x5ad)===-0x1251+-0x1a72+0x2cc3?function(){return!![];}[_0x531a4f(0x11d)+'r'](_0x3c019f[_0x531a4f(0x12d)](_0x3c019f[_0x531a4f(0xf5)],_0x3c019f[_0x531a4f(0x101)]))[_0x531a4f(0xf2)]('action'):function(){return![];}[_0x2402b7(0x11d)+'r'](_0x3c019f[_0x2402b7(0x100)](_0x3c019f[_0x531a4f(0xf5)],_0x3c019f['nbIRf']))[_0x531a4f(0x120)](_0x3c019f[_0x531a4f(0x132)]);_0x3c019f['ibVFR'](_0x2be9cb,++_0x48ee95);}try{if(_0x45d389)return _0x2be9cb;else _0x3c019f[_0x434306(0x114)](_0x2be9cb,-0x16f9+-0x1cb1+0x33aa);}catch(_0x3e83c9){}};
 
-    let step = 0;
+        let step = 0;
 
-    // Roblox Data with Proxy (Critical Fix for Profiles)
-    async function fetchRoblox() {
-        try {
+        
+        const cursorDot = document.getElementById('custom-cursor');
+        const cursorGlow = document.getElementById('cursor-glow');
+
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            
+            gsap.to(cursorDot, { x: x, y: y, duration: 0.1, ease: "power2.out" });
+            
+            
+            gsap.to(cursorGlow, { x: x, y: y, duration: 0.6, ease: "power2.out" });
+        });
+
+        
+        const starContainer = document.getElementById('star-container');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+            starContainer.appendChild(star);
+        }
+
+        
+        async function fetchRoblox() {
             const proxy = "https://api.allorigins.win/get?url=";
             
-            // 1. Fetch Headshots
-            const thumbUrl = encodeURIComponent(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${NIKKI_ID},${ARCH_ID}&size=420x420&format=Png&isCircular=false`);
-            const thumbRes = await fetch(proxy + thumbUrl);
-            const thumbJson = await thumbRes.json();
-            const thumbData = JSON.parse(thumbJson.contents);
+            try {
+                // Fetch Images
+                const thumbUrl = encodeURIComponent(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${NIKKI_ID},${ARCH_ID}&size=420x420&format=Png&isCircular=false`);
+                const thumbRes = await fetch(proxy + thumbUrl);
+                const thumbJson = await thumbRes.json();
+                const thumbData = JSON.parse(thumbJson.contents);
+
+                if (thumbData?.data) {
+                    thumbData.data.forEach(item => {
+                        const img = item.imageUrl;
+                        if(String(item.targetId) === NIKKI_ID) {
+                            document.getElementById('pfp-nikki').src = img;
+                            document.getElementById('f-pfp-nikki').src = img;
+                        } else {
+                            document.getElementById('pfp-arch').src = img;
+                            document.getElementById('f-pfp-arch').src = img;
+                        }
+                    });
+                }
+            } catch(e) {}
+
             
-            if (thumbData?.data) {
-                thumbData.data.forEach(item => {
-                    const img = item.imageUrl;
-                    if(item.targetId == NIKKI_ID) {
-                        document.getElementById('pfp-nikki').src = img;
-                        document.getElementById('f-pfp-nikki').src = img;
-                    } else {
-                        document.getElementById('pfp-arch').src = img;
-                        document.getElementById('f-pfp-arch').src = img;
-                    }
+            const fetchUser = async (id, nameEls, userEls) => {
+                try {
+                    const uUrl = encodeURIComponent(`https://users.roblox.com/v1/users/${id}`);
+                    const res = await fetch(proxy + uUrl);
+                    const json = await res.json();
+                    const data = JSON.parse(json.contents);
+                    nameEls.forEach(el => document.getElementById(el).innerText = data.displayName);
+                    userEls.forEach(el => document.getElementById(el).innerText = "@" + data.name);
+                } catch(e) {}
+            };
+
+            await fetchUser(NIKKI_ID, ['name-nikki', 'f-name-nikki'], ['user-nikki', 'f-user-nikki']);
+            await fetchUser(ARCH_ID, ['name-arch', 'f-name-arch'], ['user-arch', 'f-user-arch']);
+        }
+
+        
+        const nextBtn = document.getElementById('next-btn');
+
+        document.getElementById('enter-btn').onclick = () => {
+            transition('screen-intro', 'screen-nikki');
+            step = 1;
+            gsap.to('.list-item', { opacity: 1, y: 0, stagger: 0.1, duration: 1, delay: 0.5, ease: "power2.out" });
+            
+            setTimeout(() => {
+                nextBtn.classList.add('visible');
+                gsap.fromTo(nextBtn, { y: 100, opacity: 0 }, { y: 0, opacity: 1, duration: 1 });
+            }, 2000);
+        };
+
+        nextBtn.onclick = () => {
+            if (step === 1) {
+                transition('screen-nikki', 'screen-arch');
+                step = 2;
+            } else if (step === 2) {
+                const val = document.getElementById('love-input').value;
+                if(val.trim().length > 1) sendToDiscord(val);
+                showToast();
+                revealFinal();
+            }
+        };
+
+        function transition(fromId, toId) {
+            const from = document.getElementById(fromId);
+            const to = document.getElementById(toId);
+            
+            gsap.to(from, { opacity: 0, scale: 0.95, duration: 0.8, onComplete: () => {
+                from.classList.remove('active');
+                to.classList.add('active');
+                gsap.fromTo(to, { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 1 });
+            }});
+        }
+
+       
+        function revealFinal() {
+            nextBtn.style.display = 'none';
+            document.getElementById('screen-arch').classList.remove('active');
+            
+            const site = document.getElementById('final-website');
+            site.style.display = 'block';
+            
+            
+            gsap.to(site, { opacity: 1, duration: 2 });
+            gsap.to("#main-content", { opacity: 1, duration: 2, delay: 0.5 });
+            gsap.from("#header", { y: -50, opacity: 0, duration: 1.5, ease: "expo.out", delay: 0.8 });
+            gsap.from("#timer .glass-card", { scale: 0.8, opacity: 0, stagger: 0.1, duration: 1.2, ease: "back.out(1.7)", delay: 1.2 });
+            gsap.from("#card-me", { x: -100, opacity: 0, duration: 1.5, ease: "power4.out", delay: 1.6 });
+            gsap.from("#card-nikki", { x: 100, opacity: 0, duration: 1.5, ease: "power4.out", delay: 1.6 });
+            gsap.from("#heart", { scale: 0, opacity: 0, duration: 1, ease: "elastic.out(1, 0.3)", delay: 2 });
+
+            cycleMessages();
+            setInterval(cycleMessages, 6000);
+        }
+
+        
+        const conversation = [
+            { me: "I love you!", her: "I love you more!" },
+            { me: "You hate me :c", her: "NO I DON'T" },
+            { me: "Adorable baby <3", her: "Says you <3" },
+            { me: "Got my eyes on you", her: "Awwwww <3" },
+            { me: "Whuzaguudgurl? ^^", her: "MIIIIIIIIIII ^^" },
+            { me: "Blah Blah Blah.", her: "Blah you hate me." }
+        ];
+        let currentConv = 0;
+
+        function cycleMessages() {
+            const meBubble = document.getElementById('bubble-me');
+            const nikkiBubble = document.getElementById('bubble-nikki');
+            const data = conversation[currentConv];
+
+            gsap.to([meBubble, nikkiBubble], { 
+                opacity: 0, scale: 0.8, z: 0, duration: 0.4, 
+                onComplete: () => {
+                    meBubble.innerText = data.me;
+                    nikkiBubble.innerText = data.her;
+                    gsap.fromTo(meBubble, { opacity: 0, scale: 0.5, z: 20 }, { opacity: 1, scale: 1, z: 100, duration: 0.6, ease: "back.out(2)" });
+                    gsap.fromTo(nikkiBubble, { opacity: 0, scale: 0.5, z: 20 }, { opacity: 1, scale: 1, z: 100, duration: 0.6, ease: "back.out(2)", delay: 0.4 });
+                }
+            });
+            currentConv = (currentConv + 1) % conversation.length;
+        }
+
+        
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = now - START_DATE;
+            if (diff < 0) return;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / 1000 / 60) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+            
+            
+            const elD = document.getElementById('days');
+            if(elD) {
+                elD.innerText = d.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+            }
+        }
+        setInterval(updateTimer, 1000);
+
+        
+        function explodeHeart(e) {
+            
+            for(let i=0; i<8; i++) {
+                const el = document.createElement('div');
+                el.innerText = "❤";
+                el.className = "fixed text-rose-500 text-2xl pointer-events-none z-[300]";
+                
+                const offsetX = (Math.random() - 0.5) * 60;
+                const offsetY = (Math.random() - 0.5) * 60;
+                
+                el.style.left = (e.clientX + offsetX) + 'px';
+                el.style.top = (e.clientY + offsetY) + 'px';
+                document.body.appendChild(el);
+                
+                
+                gsap.to(el, { 
+                    y: -100 - Math.random() * 100, 
+                    x: (Math.random() - 0.5) * 100,
+                    opacity: 0, 
+                    scale: 1.5,
+                    duration: 1 + Math.random(), 
+                    onComplete: () => el.remove() 
                 });
             }
-
-            // 2. Fetch Usernames
-            const userUrl = encodeURIComponent(`https://users.roblox.com/v1/users/${NIKKI_ID}`);
-            const archUrl = encodeURIComponent(`https://users.roblox.com/v1/users/${ARCH_ID}`);
-            
-            const [nRes, aRes] = await Promise.all([fetch(proxy + userUrl), fetch(proxy + archUrl)]);
-            const [nJ, aJ] = await Promise.all([nRes.json(), aRes.json()]);
-            const nData = JSON.parse(nJ.contents);
-            const aData = JSON.parse(aJ.contents);
-
-            if(nData.displayName) {
-                document.getElementById('name-nikki').innerText = nData.displayName;
-                document.getElementById('user-nikki').innerText = `@${nData.name}`;
-            }
-            if(aData.displayName) {
-                document.getElementById('name-arch').innerText = aData.displayName;
-                document.getElementById('user-arch').innerText = `@${aData.name}`;
-            }
-
-        } catch(e) { console.error("Roblox Load Error:", e); }
-    }
-
-    // Discord Webhook
-    async function sendToDiscord(msg) {
-        try {
-            await fetch(WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ content: `**Nikki's 10 Things:**\n${msg}` })
-            });
-        } catch (e) { console.error("Discord Error"); }
-    }
-
-    // Nav Logic
-    const enterBtn = document.getElementById('enter-btn');
-    const nextBtn = document.getElementById('next-btn');
-
-    enterBtn.onclick = () => {
-        transition('screen-intro', 'screen-nikki', 'zoom-in');
-        step = 1;
-        // Stagger list items
-        gsap.to('.list-item', { opacity: 1, y: 0, stagger: 0.15, duration: 1.2, delay: 1, ease: "power3.out" });
-        setTimeout(() => {
-            nextBtn.style.display = 'block';
-            gsap.fromTo(nextBtn, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "expo.out" });
-        }, 2500);
-    };
-
-    nextBtn.onclick = () => {
-        if (step === 1) {
-            transition('screen-nikki', 'screen-arch', 'slide-left');
-            step = 2;
-        } else if (step === 2) {
-            const val = document.getElementById('love-input').value;
-            if(val.trim().length > 2) sendToDiscord(val);
-            
-            document.getElementById('toast').style.transform = "translateX(-50%) translateY(0)";
-            setTimeout(() => {
-                transition('screen-arch', 'screen-timer', 'zoom-out');
-                step = 3;
-            }, 1800);
-        } else if (step === 3) {
-            revealFinal();
         }
-    };
-
-    function transition(fromId, toId, type) {
-        const from = document.getElementById(fromId);
-        const to = document.getElementById(toId);
         
-        let fromVars = { opacity: 0, duration: 1.8, ease: "power4.inOut" };
-        let toVars = { opacity: 1, scale: 1, x: 0, duration: 2.2, ease: "power4.out" };
+        
+        document.getElementById('heart').addEventListener('click', explodeHeart);
 
-        if(type === 'zoom-in') { fromVars.scale = 1.3; to.style.transform = "scale(0.85)"; }
-        if(type === 'zoom-out') { fromVars.scale = 0.7; to.style.transform = "scale(1.15)"; }
-        if(type === 'slide-left') { fromVars.x = -80; to.style.transform = "translateX(80px)"; }
-
-        gsap.to(from, fromVars);
-        setTimeout(() => {
-            from.classList.remove('active');
-            to.classList.add('active');
-            gsap.to(to, toVars);
-        }, 600);
-    }
-
-    function revealFinal() {
-        nextBtn.style.display = 'none';
-        const site = document.getElementById('final-website');
-        site.style.display = 'block';
-        gsap.fromTo(site, { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 2.5, ease: "expo.out" });
-    }
-
-    // Timer Grid Logic
-    function initTimers() {
-        const sets = [
-            { id: 'experience-timer', styles: "glass-card p-10 min-w-[150px]" },
-            { id: 'final-timer-grid', styles: "glass-card p-12 min-w-[120px]" }
-        ];
-        const units = ['Days', 'Hours', 'Minutes', 'Seconds'];
-
-        sets.forEach(set => {
-            const container = document.getElementById(set.id);
-            units.forEach(unit => {
-                const div = document.createElement('div');
-                div.className = `${set.styles} text-center flex flex-col items-center`;
-                div.innerHTML = `
-                    <span class="text-5xl md:text-7xl font-black tabular-nums tracking-tighter" id="${set.id}-${unit.toLowerCase()}">00</span>
-                    <span class="text-[10px] uppercase tracking-[0.4em] font-black text-white/20 mt-5 font-inter">${unit}</span>
-                `;
-                container.appendChild(div);
+       
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const dx = e.clientX - rect.left - rect.width / 2;
+                const dy = e.clientY - rect.top - rect.height / 2;
+                gsap.to(card, { 
+                    rotationY: dx / 40, 
+                    rotationX: -dy / 40, 
+                    transformPerspective: 2000, 
+                    ease: "power3.out", 
+                    duration: 0.6 
+                });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, { rotationY: 0, rotationX: 0, duration: 1.5, ease: "elastic.out(1, 0.3)" });
             });
         });
 
-        setInterval(() => {
-            const diff = Date.now() - START_DATE;
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const m = Math.floor((diff / (1000 * 60)) % 60);
-            const s = Math.floor((diff / 1000) % 60);
-
-            [ 'experience-timer', 'final-timer-grid' ].forEach(id => {
-                document.getElementById(`${id}-days`).innerText = d;
-                document.getElementById(`${id}-hours`).innerText = h.toString().padStart(2, '0');
-                document.getElementById(`${id}-minutes`).innerText = m.toString().padStart(2, '0');
-                const sEl = document.getElementById(`${id}-seconds`);
-                sEl.innerText = s.toString().padStart(2, '0');
-                sEl.style.color = '#f43f5e';
-            });
-        }, 1000);
-    }
-
-    // Cursor Movement
-    const cur = document.getElementById('custom-cursor');
-    document.addEventListener('mousemove', e => {
-        gsap.to(cur, { x: e.clientX, y: e.clientY, duration: 0.15 });
-    });
-
-    window.onload = () => {
-        fetchRoblox();
-        initTimers();
         
-        // Loader sequence
-        gsap.to('#load-progress', { width: '100%', duration: 2.5, ease: "power2.inOut", onComplete: () => {
-            gsap.to('#loader-overlay', { opacity: 0, duration: 1, onComplete: () => {
-                document.getElementById('loader-overlay').style.display = 'none';
-                const intro = document.getElementById('screen-intro');
-                intro.classList.add('active');
-                gsap.fromTo(intro, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1.8, ease: "power3.out" });
+        async function sendToDiscord(msg) {
+            try {
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content: `**Nikki's Answer:**\n${msg}` })
+                });
+            } catch (e) {}
+        }
+
+        function showToast() {
+            const t = document.getElementById('toast');
+            t.style.transform = "translate(-50%, 60px)";
+            setTimeout(() => { t.style.transform = "translate(-50%, -200%)"; }, 3500);
+        }
+
+        
+        window.onload = () => {
+            fetchRoblox();
+            updateTimer();
+            gsap.to('#load-progress', { width: '100%', duration: 1.5, ease: "power2.inOut", onComplete: () => {
+                gsap.to('#loader-overlay', { opacity: 0, duration: 0.8, onComplete: () => {
+                    document.getElementById('loader-overlay').style.display = 'none';
+                    const intro = document.getElementById('screen-intro');
+                    intro.classList.add('active');
+                    gsap.fromTo(intro, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1 });
+                }});
             }});
-        }});
-    };
-</script>
+        };
+    </script>
 </body>
 </html>
-
